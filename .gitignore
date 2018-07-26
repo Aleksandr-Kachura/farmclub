@@ -15,15 +15,3 @@ velocity.log
 *.class
 workspace
 
-#jalo
-hybris/bin/custom/emvmypos/emvmyposcore/src/de/querplex/emv/mypos/core/jalo/DealerUserGroup.java
-hybris/bin/custom/emvmyposintegration/src/de/querplex/hybris/emv/jalo/ImportProductByDealerCronJob.java
-**/.sass-cache
-
-**/.idea
-**/*.iml
-
-hybris/bin/custom/**/ruleset.xml
-hybris/bin/custom/emvmypos/emvmyposstorefront/**/addonsrc
-hybris/bin/custom/emvmypos/emvmyposstorefront/**/addons
-hybris/bin/custom/emvmypos/emvmyposstorefront/**/addontestsrc
