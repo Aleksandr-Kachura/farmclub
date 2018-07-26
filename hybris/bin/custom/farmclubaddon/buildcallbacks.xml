@@ -79,5 +79,17 @@
 			
 		</sequential>
 	</macrodef>
-		
+
+	<macrodef name="farmclubaddon_after_build">
+		<sequential>
+			<if>
+			<isset property="ext.b2bacceleratoraddon.path"/>
+				<then>
+					<copy file="${ext.farmclubaddon.path}/acceleratoraddon/web/webroot/WEB-INF/_ui-src/responsive/less/farmclubaddon2.less"
+						  tofile="${ext.b2bacceleratoraddon.path}/acceleratoraddon/web/webroot/WEB-INF/_ui-src/responsive/less/farmclubaddon2.less" overwrite="true"/>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 </project>

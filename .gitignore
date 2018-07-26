@@ -15,3 +15,9 @@ velocity.log
 *.class
 workspace
 
+/hybris/bin/custom/farmclubaddon/idea-module-files/
+/hybris/bin/custom/farmclubaddon/gensrc/
+/hybris/bin/custom/farmclubaddon/.settings/
+/hybris/bin/custom/farmclubaddon/.externalToolBuilders/
+*.settings
+*.externalToolBuilders
