@@ -72,6 +72,7 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 	public void createEssentialData(final SystemSetupContext context)
 	{
 		// Add Essential Data here as you require
+		getSetupImpexService().importImpexFile("/farmclubinitialdata/import/additionaldata/group/usergroups.impex", true);
 	}
 
 	/**

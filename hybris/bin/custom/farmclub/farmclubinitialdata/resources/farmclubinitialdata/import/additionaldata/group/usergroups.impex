@@ -1,0 +1,2 @@
+INSERT_UPDATE UserGroup;uid[unique=true];locname[lang=en];backOfficeLoginDisabled;
+;test_group;Test;false;
