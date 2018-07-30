@@ -11,6 +11,8 @@
 package de.hybris.farmclub.core.integration;
 
 import de.hybris.bootstrap.annotations.IntegrationTest;
+import de.hybris.platform.catalog.CatalogVersionService;
+import de.hybris.platform.catalog.model.CatalogVersionModel;
 import de.hybris.platform.commerceservices.externaltax.CalculateExternalTaxesStrategy;
 import de.hybris.platform.commerceservices.externaltax.DecideExternalTaxesStrategy;
 import de.hybris.platform.commerceservices.externaltax.impl.DefaultExternalTaxesService;
@@ -20,10 +22,15 @@ import de.hybris.platform.core.Registry;
 import de.hybris.platform.core.enums.CreditCardType;
 import de.hybris.platform.core.model.order.CartModel;
 import de.hybris.platform.core.model.order.payment.CreditCardPaymentInfoModel;
+import de.hybris.platform.core.model.product.ProductModel;
+import de.hybris.platform.core.model.product.UnitModel;
 import de.hybris.platform.core.model.user.AddressModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.order.DeliveryModeService;
 import de.hybris.platform.order.InvalidCartException;
+import de.hybris.platform.product.ProductService;
+import de.hybris.platform.product.UnitService;
+import de.hybris.platform.servicelayer.ServicelayerTest;
 import de.hybris.platform.servicelayer.ServicelayerTransactionalTest;
 import de.hybris.platform.servicelayer.i18n.CommonI18NService;
 import de.hybris.platform.servicelayer.model.ModelService;
@@ -35,6 +42,7 @@ import de.hybris.farmclub.core.externaltax.impl.AcceleratorDetermineExternalTaxS
 import de.hybris.farmclub.core.externaltax.mock.MockCalculateExternalTaxesStrategy;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import javax.annotation.Resource;
 
@@ -51,7 +59,7 @@ import org.junit.Test;
  * 
  */
 @IntegrationTest
-public class CheckoutWithExternalTaxesIntegrationTest extends ServicelayerTransactionalTest
+public class CheckoutWithExternalTaxesIntegrationTest extends ServicelayerTest
 {
 
 	private static final String TEST_BASESITE_UID = "testSite";
@@ -87,6 +95,15 @@ public class CheckoutWithExternalTaxesIntegrationTest extends ServicelayerTransa
 	@Resource
 	private CalculateExternalTaxesStrategy calculateExternalTaxesStrategy;
 
+	@Resource
+	private CatalogVersionService catalogVersionService;
+
+	@Resource
+	private ProductService productService;
+
+	@Resource
+	private UnitService unitService;
+
 	@BeforeClass
 	public static void beforeClass()
 	{
@@ -112,9 +129,8 @@ public class CheckoutWithExternalTaxesIntegrationTest extends ServicelayerTransa
 	@Test
 	public void testCheckoutNetStore() throws InvalidCartException
 	{
-		//final CatalogVersionModel catalogVersionModel = catalogVersionService.getCatalogVersion("testCatalog", "Online");
-		//final ProductModel productModel = productService.getProductForCode(catalogVersionModel, "HW1210-3423");
-		//final UnitModel unitModel = unitService.getUnitForCode("pieces");
+		final CatalogVersionModel catalogVersionModel = catalogVersionService.getCatalogVersion("testCatalog", "Online");
+		catalogVersionService.setSessionCatalogVersions(Collections.singleton(catalogVersionModel));
 		final UserModel ahertz = userService.getUserForUID("ahertz");
 		final Collection<CartModel> cartModels = ahertz.getCarts();
 		final BaseStoreModel store = baseStoreService.getBaseStoreForUid(TEST_BASESTORE_UID);
